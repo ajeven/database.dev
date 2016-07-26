@@ -3,12 +3,15 @@ require __DIR__ . '/../src/Input.php';
 function pageController()
 {
 	if (Input::isPost()) {
-		$game = Input::get('name');
+		$name = Input::get('name');
 		$league = Input::get('league');
 		$stadium = Input::get('stadium');
 		// Write the INSERT statement to insert a team
 		// Either interpolate or concatenate the PHP variables
-		$insert = '';
+		// $connect = mysql_connect("localhost", "vagrant", "vagrant");
+		// mysql_select_db("the_league_db", $connect);
+		$insert = ("INSERT INTO teams (id, name, stadium, league)
+					VALUES ($name, $league, $stadium)");
 		// Copy the resulting query and verify that it runs using the terminal
 		var_dump($insert);
 	}
