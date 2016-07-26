@@ -10,8 +10,7 @@ function pageController()
 		// Either interpolate or concatenate the PHP variables
 		// $connect = mysql_connect("localhost", "vagrant", "vagrant");
 		// mysql_select_db("the_league_db", $connect);
-		$insert = ("INSERT INTO teams (id, name, stadium, league)
-					VALUES ($name, $league, $stadium)");
+		$insert = "INSERT INTO teams (name, stadium, league) VALUES ('$name', '$stadium', '$league')";		
 		// Copy the resulting query and verify that it runs using the terminal
 		var_dump($insert);
 	}
