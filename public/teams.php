@@ -16,6 +16,12 @@ function pageController()
 
 		$sql .= " ORDER BY '$sort' ASC";
 	}
+	// Add a LIMIT and an OFFSET clause, suppose the size of each page is 5
+
+	$page = Input::get('page', 1) < 0 ? 1 : Input::get('page', 1);
+	$offset = $page * 5 - 5;
+	$sql .= " LIMIT 5 OFFSET $offset";
+
 	var_dump($sql);
 	return [
 		'title' => 'Teams',
@@ -97,6 +103,32 @@ extract(pageController());
 					  <td>American</td>
 				  </tr>
 				  </tbody>
+				  <tfoot>
+					<tr>
+					  <td colspan="4">
+						  <!-- The values in this pagination control indicate you're currently viewing page 2 -->
+						  <nav aria-label="Page navigation" class="text-center">
+							  <ul class="pagination">
+								  <li>
+									  <a href="?page=1" aria-label="Previous">
+										  <span aria-hidden="true">&laquo;</span>
+									  </a>
+								  </li>
+								  <li><a href="?page=1">1</a></li>
+								  <li><a href="?page=2">2</a></li>
+								  <li><a href="?page=3">3</a></li>
+								  <li><a href="?page=4">4</a></li>
+								  <li><a href="?page=5">5</a></li>
+								  <li>
+									  <a href="?page=3" aria-label="Next">
+										  <span aria-hidden="true">&raquo;</span>
+									  </a>
+								  </li>
+							  </ul>
+						  </nav>
+					  </td>
+					</tr>
+					</tfoot>
 				</table>
 			<button type="submit" class="btn btn-danger">
 				<span class="glyphicon glyphicon-trash"></span>
