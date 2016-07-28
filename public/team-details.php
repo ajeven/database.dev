@@ -9,6 +9,17 @@ function pageController()
 	$select = "SELECT * FROM teams WHERE id = $teamId";
 	// Copy the resulting query and verify that it runs using the terminal
 	var_dump($select);
+	if (Input::isPost()) {
+		$name = Input::get('name');
+		$league = Input::get('league');
+		$stadium = Input::get('stadium');
+		var_dump($name, $league, $stadium, $teamId);
+		// Write the UPDATE statement for a team
+		// Either interpolate or concatenate the PHP variables
+		$update = '';
+		// Copy the resulting query and verify that it runs using the terminal
+		var_dump($update);
+	}
 	return [
 		'title' => 'Texas Rangers'
 	];

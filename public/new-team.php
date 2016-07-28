@@ -2,10 +2,11 @@
 require __DIR__ . '/../src/Input.php';
 function pageController()
 {
+
+		$name = Input::get('name', '');
+		$league = Input::get('league', '');
+		$stadium = Input::get('stadium', '');
 	if (Input::isPost()) {
-		$name = Input::get('name');
-		$league = Input::get('league');
-		$stadium = Input::get('stadium');
 		// Write the INSERT statement to insert a team
 		// Either interpolate or concatenate the PHP variables
 		// $connect = mysql_connect("localhost", "vagrant", "vagrant");
@@ -14,8 +15,11 @@ function pageController()
 		// Copy the resulting query and verify that it runs using the terminal
 		var_dump($insert);
 	}
-	return [
-		'title' => 'New Team'
+		return [
+		'title' => 'New Team',
+		'name' => $name,
+		'league' => $league,
+		'stadium' => $stadium
 	];
 }
 extract(pageController());
@@ -41,6 +45,7 @@ extract(pageController());
 						name="name"
 						id="name"
 						placeholder="Texas Rangers"
+						value="<?= $name ?>"
 					>
 				</div>
 			</div>
@@ -51,13 +56,13 @@ extract(pageController());
 				<div class="col-sm-10">
 					<div class="radio">
 						<label>
-							<input type="radio" name="league" value="american" checked>
+							<input type="radio" name="league" value="american" <?= 'american' == $league ? 'checked' : '' ?>>
 							American
 						</label>
 					</div>
 					<div class="radio">
 						<label>
-							<input type="radio" name="league" value="national">
+							<input type="radio" name="league" value="national" <?= 'national' == $league ? 'checked' : '' ?>>
 							National
 						</label>
 					</div>
@@ -74,6 +79,7 @@ extract(pageController());
 						name="stadium"
 						id="stadium"
 						placeholder="Globe Life Park"
+						value="<?= $stadium ?>"
 					>
 				</div>
 			</div>
