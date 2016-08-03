@@ -1,4 +1,4 @@
-<?php
+<?php 
 class Input
 {
 	/**
@@ -9,8 +9,13 @@ class Input
 	 */
 	public static function has($key)
 	{
-		return isset($_REQUEST[$key]);
+		if (isset($_REQUEST[$key])) {
+			return true;
+		} else {
+			return false;
+		}
 	}
+
 	/**
 	 * Get a requested value from either $_POST or $_GET
 	 *
@@ -20,17 +25,16 @@ class Input
 	 */
 	public static function get($key, $default = null)
 	{
+		//checks for the value of $key and requests that value returning null if none.
 		return self::has($key) ? $_REQUEST[$key] : $default;
 	}
-	/**
-	 * @return bool Returns true if the current request is a POST request
-	 */
-	public static function isPost()
-	{
-		return $_SERVER['REQUEST_METHOD'] === 'POST';
-	}
-	/**
-	 * Prevent the creation of instances of this class
-	 */
+
+
+	///////////////////////////////////////////////////////////////////////////
+	//                      DO NOT EDIT ANYTHING BELOW!!                     //
+	// The Input class should not ever be instantiated, so we prevent the    //
+	// constructor method from being called. We will be covering private     //
+	// later in the curriculum.                                              //
+	///////////////////////////////////////////////////////////////////////////
 	private function __construct() {}
 }

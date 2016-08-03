@@ -10,13 +10,13 @@ function pageController()
 		// Concatenate the WHERE part to retrieve only the games for either the
 		// National league or the American league
 		$league = Input::get('league');
-		$sql .= " WHERE lt.league = 'National' OR lt.league = '$league'";
+		$sql .= " WHERE lt.league = '$league' OR vt.league = '$league'";
 	}
 	if (Input::has('team')) {
 		// Concatenate the WHERE part to retrieve only the games for teams with
 		// a name similar to the one provided by the user.
 		$team = Input::get('team');
-		$sql .= " AND ";
+		$sql .= " OR lt.name LIKE %$team% OR vt.name LIKE %$team% ";
 	}
 	// Copy the generated query and verify that it retrieves the correct values
 	// in SQL Pro

@@ -7,7 +7,7 @@ function pageController()
         // Filter teams based on league, only select the team's identifier
         // and its name
         $selectTeams = "SELECT id, NAME FROM teams 
-        WHERE league = 'National' OR league = 'American';";
+        WHERE league = '$leage'";
         // Try your query in Sequel Pro
         var_dump($selectTeams);
         // Use the values from your query to populate your form
@@ -15,7 +15,7 @@ function pageController()
     }
     // The player's identifier should be in the query string
     $teamId = Input::get('player_id');
-    $sql = "SELECT id, name FROM players WHERE id = $teamId";
+    $sql = "SELECT name FROM players WHERE id = '$teamId'";
     var_dump($sql);
     return [
         'title' => 'Chris Young',
