@@ -6,7 +6,7 @@ function pageController()
 		$name = Input::get('name', '');
 		$league = Input::get('league', '');
 		$stadium = Input::get('stadium', '');
-	if (Input::isPost()) {
+	if (Input::get()) {
 		// Write the INSERT statement to insert a team
 		// Either interpolate or concatenate the PHP variables
 		// $connect = mysql_connect("localhost", "vagrant", "vagrant");

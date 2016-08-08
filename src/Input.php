@@ -16,6 +16,28 @@ class Input
 		}
 	}
 
+	public static function getString($key)
+	{
+		$value = Self::get($key);
+		if (!is_string($value))
+		{
+			throw new exception ('The value of $key should be a string');
+		}
+		return trim($value);
+	}
+	public static function getNumber($key, $default = 0)
+	{
+		$value = Self::get($key, $default);
+		if (!is_numeric($key))
+		{
+			throw new exception ('The value of $key should be a number');
+		}
+		return floatval($value);
+	}
+	public static function isPost()
+	{
+		return !empty($_POST);
+	}
 	/**
 	 * Get a requested value from either $_POST or $_GET
 	 *
